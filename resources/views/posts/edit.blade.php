@@ -2,13 +2,16 @@
 
 
 @section('content')
+<div class="container">
+    <br><br>
+    <h2 class="text-center">Edit Page</h2>
 
-<form method="post" action="/update/{{$post->id}}">
+<form method="post" action="/update/{{$post->id}} " class="form-control">
 {{csrf_field()}}
-Title :- <input type="text" name="title" value="{{$post->title}}">
+Title :- <input type="text" class="form-control" name="title" value="{{$post->title}}">
 <br><br>
 Description :- 
-<textarea name="description">{{$post->description}}</textarea>
+<textarea name="description" class="form-control" >{{$post->description}}</textarea>
 <br>
 <br>
 Post Creator is {{$post->user->name}}
@@ -22,5 +25,5 @@ Post Creator is {{$post->user->name}}
 <br>
 <input type="submit" value="update" class="btn btn-primary">
 </form>
-
+</div>
 @endsection

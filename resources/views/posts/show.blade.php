@@ -2,26 +2,26 @@
 
 
 @section('content')
-<h4>post info</h4>
-title :
-<h3>{{$post->title}}</h3>
-description :
-<h3>{{$post->description}}</h3>
-
+<div class='container'>
+<h4 class=" alert-danger text-center">post info</h4>
+<div class=" alert-info">
+<h3 >title :{{$post->title}}</h3>
+<h3 >description : {{$post->description}}</h3>
+</div>
 
 <br><br>
 <br>
-<h4>creator info</h4>
-name :
-<h3>{{$post->user->name}}</h3>
-Email :
-<h3>{{$post->user->email}}</h3>
-Created at :
-<h3>{{$post->created_at}}</h3>
+<h4 class=" alert-danger text-center">creator info</h4>
+<div class=" alert-info">
+<h3>name : {{$post->user->name}}</h3>
+
+<h3 > Email : {{$post->user->email}}</h3>
+
+<h3 >Created at : {{$post->created_at->toDayDateTimeString()}}</h3>
+</div>
 
 
-
-
+</div>
 
 
 
