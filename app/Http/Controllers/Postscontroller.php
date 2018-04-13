@@ -3,21 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Post;
+use App\User;
+
 
 class Postscontroller extends Controller
 {
     public function index()
     {
         $posts = Post::all();
-        dd($posts);
+        $post = $posts->first();
+
+        return view('posts.index',[
+
+            'posts' => $posts
+        ]);
     }
 
 
     public function create()
     {
+        $users = User::all();
 
-        return view('posts.create');
+        return view('posts.create',[
+            'users' => $users
+        ]);
     }
 
     public function store(Request $request)
@@ -25,10 +36,40 @@ class Postscontroller extends Controller
         Post::create([
             'title' => $request->title,
             'description' => $request->description,
+             'user_id' => $request->user_id,
         ]);
         
        return redirect('/posts'); 
     }
+    public function show($id)
+    {
+        return view('posts.show',[
+            'post' => Post::findOrFail($id)
+            
+            ]);
+    }
+    public function edit($id)
+    {
+        $users = User::all();
+        return view('posts.edit',[
+            'users' => $users,
+            'post' => Post::findOrFail($id)
+            ]);
+    }
+    public function update(Request $request, $id)
+{
+    Post::where('id', $id)->update(['title' => $request->title,
+    'description' => $request->description,
+     'user_id' => $request->user_id,
+]);
+    return redirect('/posts');
+}
+public function destroy($id)
+{
+    DB::table('posts')->where('id' , $id)->delete(); 
+    return redirect('/posts');
+}
+    
 
 }
 

@@ -12,7 +12,13 @@ Description :-
 <br>
 <br>
 Post Creator
+<select class="form-control" name="user_id">
+@foreach ($users as $user)
+    <option value="{{$user->id}}">{{$user->name}}</option>
+@endforeach
 
+</select>
+<br>
 <br>
 <input type="submit" value="Submit" class="btn btn-primary">
 </form>
