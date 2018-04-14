@@ -33,6 +33,7 @@
 
 </ul>
 </table>
+{{$posts->links()}}
 </div>
     <script> 
     function myFunction(x) {
