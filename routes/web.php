@@ -16,16 +16,20 @@ Route::get('/', function () {
 });
 
 
-Route::get('/posts','Postscontroller@index');
-Route::get('/posts/create','Postscontroller@create');
-Route::post('/posts','Postscontroller@store');
-Route::get('/posts/{id}','Postscontroller@show');
-Route::get('/posts/{id}/edit','Postscontroller@edit');
-Route::post('/update/{id}','Postscontroller@update');
-Route::get('/delete/{id}','Postscontroller@destroy');
+Route::get('/posts','Postscontroller@index')->Middleware('auth');
+Route::get('/posts/create','Postscontroller@create')->Middleware('auth');
+Route::post('/posts','Postscontroller@store')->Middleware('auth');
+Route::get('/posts/{id}','Postscontroller@show')->Middleware('auth');
+Route::get('/posts/{id}/edit','Postscontroller@edit')->Middleware('auth');
+Route::post('/update/{post}','Postscontroller@update')->Middleware('auth');
+Route::DELETE('/delete/{id}','Postscontroller@destroy')->Middleware('auth');
 
 
 
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

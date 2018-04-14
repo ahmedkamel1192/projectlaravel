@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Post;
 use App\User;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
+
 
 
 class Postscontroller extends Controller
@@ -31,13 +34,13 @@ class Postscontroller extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        Post::create([
-            'title' => $request->title,
-            'description' => $request->description,
-             'user_id' => $request->user_id,
-        ]);
+        Post::create($request->only(['title','description','user_id']));
+        //     'title' => $request->title,
+        //     'description' => $request->description,
+        //      'user_id' => $request->user_id,
+        // ]);
         
        return redirect('/posts'); 
     }
@@ -56,13 +59,18 @@ class Postscontroller extends Controller
             'post' => Post::findOrFail($id)
             ]);
     }
-    public function update(Request $request, $id)
-{
-    Post::where('id', $id)->update(['title' => $request->title,
-    'description' => $request->description,
-     'user_id' => $request->user_id,
-]);
+    public function update(UpdatePostRequest $request,Post $post)
+{ 
+    $post->slug=null;
+   $post->update($request->only(['title','description','user_id']));
+     
+//     Post::where('id', $id)->update(['title' => $request->title,
+//     'description' => $request->description,
+//      'user_id' => $request->user_id,
+    
+// ]);
     return redirect('/posts');
+    
 }
 public function destroy($id)
 {

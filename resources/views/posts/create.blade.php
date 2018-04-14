@@ -1,12 +1,21 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 
 @section('content')
 <div class="container">
     <br><br>
     <h2 class="text-center">Add new Post</h2>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
-<form method="post" class="form-control" action="/posts">
+<form method="post" action="/posts">
 {{csrf_field()}}
 Title :- <input type="text" class="form-control" name="title">
 <br><br>
