@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 
 @section('content')
@@ -7,6 +7,7 @@
 <div class=" alert-info">
 <h3 >title :{{$post->title}}</h3>
 <h3 >description : {{$post->description}}</h3>
+<img src="{{url('uploads/'.$post->photo)}}" style="width:200px;height:200px">
 </div>
 
 <br><br>
@@ -17,7 +18,7 @@
 
 <h3 > Email : {{$post->user->email}}</h3>
 
-<h3 >Created at : {{$post->created_at->toDayDateTimeString()}}</h3>
+<h3 >Created at : {{$post->created_at}}</h3>
 </div>
 
 

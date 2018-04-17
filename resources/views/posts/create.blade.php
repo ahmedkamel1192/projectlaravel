@@ -15,8 +15,11 @@
     </div>
 @endif
 
-<form method="post" action="/posts">
+
+
+<form method="post" action="/posts" enctype="multipart/form-data">
 {{csrf_field()}}
+<input type="file" class="form-control" name="photo">
 Title :- <input type="text" class="form-control" name="title">
 <br><br>
 Description :- 

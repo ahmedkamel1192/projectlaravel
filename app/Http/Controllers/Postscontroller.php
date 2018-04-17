@@ -35,12 +35,17 @@ class Postscontroller extends Controller
     }
 
     public function store(StorePostRequest $request)
-    {
-        Post::create($request->only(['title','description','user_id']));
-        //     'title' => $request->title,
-        //     'description' => $request->description,
-        //      'user_id' => $request->user_id,
-        // ]);
+    {   
+        // $file = request()->file('file');
+        // $ext = $file->getClientOriginalExtension();
+        // $file->move(storage_path('uploads'), 'image_'.time().'.'.$ext);
+        //  return $request->file->store('images');
+        Post::create([
+            'title' => $request->title,
+            'description' => $request->description,
+             'user_id' => $request->user_id,
+             'photo' => $request->photo->store('imag'),
+        ]);
         
        return redirect('/posts'); 
     }

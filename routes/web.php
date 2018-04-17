@@ -23,6 +23,8 @@ Route::get('/posts/{id}','Postscontroller@show')->Middleware('auth');
 Route::get('/posts/{id}/edit','Postscontroller@edit')->Middleware('auth');
 Route::post('/update/{post}','Postscontroller@update')->Middleware('auth');
 Route::DELETE('/delete/{id}','Postscontroller@destroy')->Middleware('auth');
+Route::get('login/{provider}','Auth\SocialAccountController@redirectToProvider');
+Route::get('login/{provider}/callback','Auth\SocialAccountController@handleProviderCallback');
 
 
 

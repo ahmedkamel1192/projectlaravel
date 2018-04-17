@@ -16,6 +16,7 @@
             <th>Title</th>
             <th>Posted By</th>
             <th>Created At</th>
+            <th>Photo</th>
             <th>Actions</th>
 
         </tr>
@@ -26,7 +27,8 @@
 <td>{{$post->slug}}</td>
 <td>{{ $post->title }}</td>
 <td>{{$post->user->name}}</td>
-<td>{{$post->created_at->toDayDateTimeString()}}</td>
+<td>{{$post->hamada}}</td>
+<td><img src="{{url('uploads/'.$post->photo)}}" style="width:50px;height:50px"></td>
 <td><a href="/posts/{{$post->id}}"><button class="btn btn-success">view</button></a><a href="/posts/{{$post->id}}/edit"><button class="btn btn-warning" style="margin:10">update</button></a>
 <form action="/delete/{{$post->id}}"  method="post">
 {{csrf_field()}}
